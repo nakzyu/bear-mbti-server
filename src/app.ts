@@ -1,13 +1,15 @@
 import express, { Application } from "express";
-import { getResult, postResult } from "./controllers/result";
+import { resultController } from "./controllers/result";
+import { connectToDatabase } from "./services/db.service";
 
 const app: Application = express();
 
-const port: number = 3001;
+const port: number = 8080;
 
-app.post("/result", postResult);
-app.get("/result", getResult);
-
-app.listen(port, function () {
-  console.log(`App is listening on port ${port} !`);
+connectToDatabase().then(() => {
+  console.log("conn");
+  app.use("/result", resultController);
+  app.listen(port, function () {
+    console.log(`App is listening on port ${port} !`);
+  });
 });
