@@ -15,7 +15,7 @@ export async function connectToDatabase() {
   const db: mongoDB.Db = client.db(process.env.DB_NAME);
 
   const resultCollection: mongoDB.Collection = db.collection(
-    process.env.GAMES_COLLECTION_NAME as string
+    process.env.RESULT_COLLECTION_NAME as string
   );
 
   collections.result = resultCollection;
