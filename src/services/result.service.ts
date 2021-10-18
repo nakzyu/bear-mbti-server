@@ -3,7 +3,10 @@ import { collections } from "./db.service";
 
 let freqs: [string, number][] = [];
 
-const postOne = () => {};
+export const getTypeFreqs = (): [string, number][] => freqs;
+export const postOne = (result: Result): void => {
+  collections.result?.insertOne(new Result(result.type));
+};
 
 const gather = async () => {
   const results = (await collections.result?.find().toArray()) as Result[];

@@ -1,12 +1,13 @@
-import express, { Request, Response } from "express";
+import { Request, Response } from "express";
 import Result from "../models/result";
-import { collections } from "../services/db.service";
+import * as resultService from "../services/result.service";
 
-export const get = (req: Request, res: Response) => {
-  res.end();
+export const get = (req: Request, res: Response): void => {
+  const freqs = resultService.getTypeFreqs();
+  res.end(freqs);
 };
-export const post = (req: Request, res: Response) => {
+export const post = (req: Request, res: Response): void => {
   const result: Result = req.body;
-  collections.result?.insertOne(new Result(result.type));
+  resultService.postOne(result);
   res.end();
 };
