@@ -6,7 +6,7 @@ import bodyParser from "body-parser";
 
 const app: Application = express();
 
-const port = 8080;
+const port = 443;
 
 const init = async () => {
   await connectToDatabase();
