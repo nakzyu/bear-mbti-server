@@ -6,8 +6,6 @@ import bodyParser from "body-parser";
 
 const app: Application = express();
 
-const port = 8080;
-
 const init = async () => {
   await connectToDatabase();
   console.log("conn");
@@ -16,8 +14,8 @@ const init = async () => {
   app.use(bodyParser.json());
   app.use("/api", router);
 
-  app.listen(port, function () {
-    console.log(`App is listening on port ${port} !`);
+  app.listen(process.env.PORT, function () {
+    console.log(`App is listening on port ${process.env.PORT} !`);
   });
 };
 
