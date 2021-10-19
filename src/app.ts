@@ -6,15 +6,19 @@ import bodyParser from "body-parser";
 
 const app: Application = express();
 
-const port: number = 8080;
+const port = 8080;
 
-connectToDatabase().then(() => {
+const init = async () => {
+  await connectToDatabase();
   console.log("conn");
   app.use(cors());
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());
   app.use("/api", router);
+
   app.listen(port, function () {
     console.log(`App is listening on port ${port} !`);
   });
-});
+};
+
+init();
