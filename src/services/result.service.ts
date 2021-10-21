@@ -39,4 +39,4 @@ const updateRatio = async () => {
 updateRatio();
 setInterval(() => {
   updateRatio();
-}, 1000);
+}, 1000 * 60 * 60);
