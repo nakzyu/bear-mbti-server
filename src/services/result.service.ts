@@ -19,6 +19,7 @@ export const postOne = async (result: Result): Promise<string> => {
 
 const gather = async () => {
   const results = (await collections.result?.find().toArray()) as Result[];
+  console.log(results);
   if (!results || !results.length) return;
   const acc: Record<string, number> = {};
   results.forEach((result) => {
@@ -30,13 +31,12 @@ const gather = async () => {
   return res;
 };
 
-const updateRatio = async () => {
-  console.log(freqs);
+export const updateRatio = async (): Promise<void> => {
   const res = await gather();
   if (res) freqs = res;
+  return;
 };
 
-updateRatio();
 setInterval(() => {
   updateRatio();
 }, 1000 * 60 * 60);
