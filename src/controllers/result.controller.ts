@@ -15,7 +15,9 @@ export const getLength = async (
   res: Response
 ): Promise<Response<Record<string, [string, number][]>>> => {
   const allResults = await resultService.getAll();
-  return res.status(200).send(allResults.length);
+  res.status(200);
+  res.json(allResults.length);
+  return res;
 };
 export const post = (
   req: Request,
