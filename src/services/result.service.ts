@@ -3,6 +3,15 @@ import { collections } from "./db.service";
 
 let freqs: [string, number][] = [];
 
+export const getAll = async (): Promise<Result[]> => {
+  try {
+    const results = (await collections.result?.find().toArray()) as Result[];
+    return results;
+  } catch (e) {
+    return Promise.reject();
+  }
+};
+
 export const getTypeFreqs = (): [string, number][] => freqs;
 
 export const postOne = async (result: Result): Promise<string> => {

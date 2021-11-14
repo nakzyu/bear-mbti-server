@@ -10,6 +10,13 @@ export const get = (
   const freqs = resultService.getTypeFreqs();
   return res.status(200).send(freqs);
 };
+export const getLength = async (
+  req: Request,
+  res: Response
+): Promise<Response<Record<string, [string, number][]>>> => {
+  const allResults = await resultService.getAll();
+  return res.status(200).send(allResults.length);
+};
 export const post = (
   req: Request,
   res: Response
